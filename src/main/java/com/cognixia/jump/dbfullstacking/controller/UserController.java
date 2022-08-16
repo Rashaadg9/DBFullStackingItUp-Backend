@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cognixia.jump.dbfullstacking.model.Transfer;
 import com.cognixia.jump.dbfullstacking.model.User;
 import com.cognixia.jump.dbfullstacking.model.cashUpdate;
 import com.cognixia.jump.dbfullstacking.model.loginForm;
@@ -60,5 +61,21 @@ public class UserController
 		}
 		
 		return userRepository.save(user);
+	}
+	
+	@PutMapping(value = "/user/transfer")
+	public User transfer(@RequestBody Transfer transfer)
+	{
+		User userMe = findUserById(transfer.getId());
+		
+		User userOther = userRepository.findByUsername(transfer.getUsername());
+		
+		userOther.setCash(userOther.getCash() + transfer.getAmount());
+		
+		userMe.setCash(userMe.getCash() - transfer.getAmount());
+		
+		
+		userRepository.save(userOther);
+		return userRepository.save(userMe);
 	}
 }

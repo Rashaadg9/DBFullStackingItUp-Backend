@@ -1,7 +1,6 @@
 package com.cognixia.jump.dbfullstacking.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.cognixia.jump.dbfullstacking.model.User;
@@ -12,4 +11,6 @@ public interface UserRepository extends JpaRepository<User, Integer>
 	User findByUserId(Integer userId);
 	
 	User findByUsernameAndPass(String username, String pass);
+	
+	User findByUsername(String username);
 }
