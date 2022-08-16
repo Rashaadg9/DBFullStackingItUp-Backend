@@ -36,9 +36,9 @@ public class Transactions implements Serializable
 	@Min(value = 1)
 	private Double trans_amount;
 	
-	@Column(name="user_id")
-	@NotBlank(message = "User_id cannot be left blank")
-	private Integer user_id;
+	@Column(name="uid")
+	@NotBlank(message = "User id cannot be left blank")
+	private Integer uid;
 	
 	public Transactions()
 	{}
@@ -46,13 +46,13 @@ public class Transactions implements Serializable
 	public Transactions(Integer trans_id, @NotBlank(message = "Date cannot be left blank") Date trans_date,
 			@NotBlank(message = "Type cannot be left blank") String trans_type,
 			@NotBlank(message = "Amount cannot be left blank") @Min(1) Double trans_amount,
-			@NotBlank(message = "User_id cannot be left blank") Integer user_id) {
+			@NotBlank(message = "User_id cannot be left blank") Integer uid) {
 		super();
 		this.trans_id = trans_id;
 		this.trans_date = trans_date;
 		this.trans_type = trans_type;
 		this.trans_amount = trans_amount;
-		this.user_id = user_id;
+		this.uid = uid;
 	}
 
 	public Integer getTrans_id() {
@@ -87,18 +87,12 @@ public class Transactions implements Serializable
 		this.trans_amount = trans_amount;
 	}
 
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUid() {
+		return uid;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
-	}
-
-	@Override
-	public String toString() {
-		return "Transactions [trans_id=" + trans_id + ", trans_date=" + trans_date + ", trans_type=" + trans_type
-				+ ", trans_amount=" + trans_amount + ", user_id=" + user_id + "]";
+	public void setUid(Integer uid) {
+		this.uid = uid;
 	}
 	
 	

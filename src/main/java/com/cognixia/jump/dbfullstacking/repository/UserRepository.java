@@ -8,5 +8,5 @@ import com.cognixia.jump.dbfullstacking.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>
 {
-	
+	User findByUserId(Integer userId);
 }

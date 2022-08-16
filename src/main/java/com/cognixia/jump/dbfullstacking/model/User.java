@@ -19,9 +19,9 @@ public class User implements Serializable
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="user_id")
+	@Column(name="userid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer user_id;
+	private Integer userId;
 	
 	@Column(name="first_name")
 	@NotBlank(message = "First name cannot be left blank")
@@ -45,20 +45,19 @@ public class User implements Serializable
 	
 	@Column(name="cash")
 	@Min(value = 1)
-	@NotBlank(message = "Cash cannot be left blank")
 	private Double cash;
 	
 	public User()
 	{}
 	
-	public User(Integer user_id, @NotBlank(message = "First name cannot be left blank") String first_name,
+	public User(Integer userId, @NotBlank(message = "First name cannot be left blank") String first_name,
 			@NotBlank(message = "Last name cannot be left blank") String last_name,
 			@NotBlank(message = "Username cannot be left blank") String username,
 			@NotBlank(message = "Password cannot be left blank") String pass,
 			@NotBlank(message = "Pin cannot be left blank") String pin,
-			@Min(1) @NotBlank(message = "Cash cannot be left blank") Double cash) {
+			@Min(1)Double cash) {
 		super();
-		this.user_id = user_id;
+		this.userId = userId;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.username = username;
@@ -67,12 +66,12 @@ public class User implements Serializable
 		this.cash = cash;
 	}
 
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getFirst_name() {
@@ -121,12 +120,6 @@ public class User implements Serializable
 
 	public void setCash(Double cash) {
 		this.cash = cash;
-	}
-
-	@Override
-	public String toString() {
-		return "User [user_id=" + user_id + ", first_name=" + first_name + ", last_name=" + last_name + ", username="
-				+ username + ", pass=" + pass + ", pin=" + pin + ", cash=" + cash + "]";
 	}
 	
 	
