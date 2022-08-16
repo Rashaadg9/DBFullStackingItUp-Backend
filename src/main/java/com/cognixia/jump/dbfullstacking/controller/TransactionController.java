@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cognixia.jump.dbfullstacking.model.Transactions;
@@ -20,6 +21,14 @@ public class TransactionController
 	public Iterable<Transactions> all()
 	{
 		List<Transactions> transactions = transactionsRepository.findAll();
+		
+		return transactions;
+	}
+	
+	@GetMapping(value = "/transactions/{uid}")
+	public Iterable<Transactions> findByUid(@PathVariable("uid") Integer uid)
+	{
+		List<Transactions> transactions = transactionsRepository.findByUid(uid);
 		
 		return transactions;
 	}

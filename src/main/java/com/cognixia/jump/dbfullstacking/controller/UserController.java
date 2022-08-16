@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cognixia.jump.dbfullstacking.model.User;
 import com.cognixia.jump.dbfullstacking.model.cashUpdate;
+import com.cognixia.jump.dbfullstacking.model.loginForm;
 import com.cognixia.jump.dbfullstacking.repository.UserRepository;
 
 @RestController
@@ -24,6 +25,14 @@ public class UserController
 	public Iterable<User> all()
 	{
 		List<User> user = userRepository.findAll();
+		
+		return user;
+	}
+	
+	@GetMapping(value = "/user/login")
+	public User findUserById(@RequestBody loginForm loginForm)
+	{
+		User user = userRepository.findByUsernameAndPass(loginForm.getUsername(), loginForm.getPassword());
 		
 		return user;
 	}
