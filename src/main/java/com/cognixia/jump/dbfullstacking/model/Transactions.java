@@ -24,7 +24,6 @@ public class Transactions implements Serializable
 	private Integer trans_id;
 	
 	@Column(name="trans_date")
-	@NotBlank(message = "Date cannot be left blank")
 	private Date trans_date;
 	
 	@Column(name="trans_type")
@@ -32,18 +31,16 @@ public class Transactions implements Serializable
 	private String trans_type;
 	
 	@Column(name="trans_amount")
-	@NotBlank(message = "Amount cannot be left blank")
 	@Min(value = 1)
 	private Double trans_amount;
 	
 	@Column(name="uid")
-	@NotBlank(message = "User id cannot be left blank")
 	private Integer uid;
 	
 	public Transactions()
 	{}
 	
-	public Transactions(Integer trans_id, @NotBlank(message = "Date cannot be left blank") Date trans_date,
+	public Transactions(Integer trans_id, Date trans_date,
 			@NotBlank(message = "Type cannot be left blank") String trans_type,
 			@NotBlank(message = "Amount cannot be left blank") @Min(1) Double trans_amount,
 			@NotBlank(message = "User_id cannot be left blank") Integer uid) {
