@@ -5,8 +5,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +21,7 @@ import com.cognixia.jump.dbfullstacking.model.loginForm;
 import com.cognixia.jump.dbfullstacking.controller.TransactionController;
 import com.cognixia.jump.dbfullstacking.repository.UserRepository;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class UserController
 {
@@ -37,8 +40,8 @@ public class UserController
 		return user;
 	}
 	
-	@GetMapping(value = "/user/login")
-	public User findUserById(@RequestBody loginForm loginForm)
+	@PostMapping(value = "/user/login")
+	public User findByUsernameAndPass(@RequestBody loginForm loginForm)
 	{
 		User user = userRepository.findByUsernameAndPass(loginForm.getUsername(), loginForm.getPassword());
 		
