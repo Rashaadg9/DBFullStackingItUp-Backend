@@ -48,6 +48,25 @@ public class UserController
 		return user;
 	}
 	
+	@PostMapping(value = "/user/new")
+	public Boolean createUser(@RequestBody User newUser)
+	{
+		
+		try
+		{
+			Date date = Date.valueOf(LocalDate.now());
+			User user = userRepository.save(newUser);
+			Transactions transaction = new Transactions(null, date, "deposit", user.getCash(), user.getUserId() );
+			transactionController.saveNew(transaction);
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	
 	@GetMapping(value = "/user/{userId}")
 	public User findUserById(@PathVariable("userId") Integer userId)
 	{

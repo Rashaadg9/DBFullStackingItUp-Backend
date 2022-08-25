@@ -31,7 +31,7 @@ public class User implements Serializable
 	@NotBlank(message = "Last name cannot be left blank")
 	private String last_name;
 	
-	@Column(name="username")
+	@Column(name="username", unique=true)
 	@NotBlank(message = "Username cannot be left blank")
 	private String username;
 	
