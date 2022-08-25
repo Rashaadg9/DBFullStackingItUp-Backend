@@ -75,6 +75,17 @@ public class UserController
 		return user;
 	}
 	
+	@GetMapping(value = "/user/available/{userName}")
+	public Boolean findIfUserIsAvailable(@PathVariable("userName") String userName)
+	{
+		if(userRepository.findByUsername(userName) == null)
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	
 	@PutMapping(value = "/user")
 	public User update(@RequestBody cashUpdate update)
 	{
